@@ -30,6 +30,15 @@ python3 create_measurements.py 1_000_000_000
 ```
 
 For quicker testing during development, you can generate smaller datasets:
+
+```bash
+# Generate 10 Million rows
+python3 create_measurements.py 10_000_000
+```
+
+The script accepts an optional second argument for the output file path. If not provided, it defaults to `./data/measurements.txt`.
+
+For quicker testing during development, you can generate smaller datasets:
 ```bash
 # Generate 10 Million rows
 python3 create_measurements.py 10_000_000
@@ -58,20 +67,20 @@ python3 run_all.py data/measurements.txt --runs 3
 
 | Implementation | Input | Time (avg) |
 |---|---|---|
-| go-haiku-4.5 | medium.txt | 21.2ms |
-| go-opus4.5-with-hint | medium.txt | 37.5ms |
-| go-gemini3-with-hint | medium.txt | 48.1ms |
-| go-gemini3 | medium.txt | 58.2ms |
-| go-opus4.5 | medium.txt | 104.7ms |
-| go-gpt5.1 | medium.txt | 110.8ms |
-| go-opencode-grok-code-fast-with-hint | medium.txt | 111.6ms |
-| go-haiku-4.5-with-hint | medium.txt | 122.7ms |
-| go-opencode-grok-code-fast | medium.txt | 131.5ms |
-| go-gpt5.1-with-hint | medium.txt | 134.9ms |
-| go-qwen | medium.txt | 145.1ms |
-| go-qwen-with-hint | medium.txt | 147.3ms |
-| rust-opus4.5-with-hint | medium.txt | 253.3ms |
-| rust-opus-4.5 | medium.txt | 263.1ms |
+| go-gemini3-with-hint | medium.txt | 114.4ms |
+| go-opus4.5-with-hint | medium.txt | 154.9ms |
+| go-opus4.5 | medium.txt | 181.2ms |
+| go-haiku-4.5 | medium.txt | 217.3ms |
+| go-gemini3 | medium.txt | 287.5ms |
+| rust-opus4.5-with-hint | medium.txt | 355.4ms |
+| rust-opus-4.5 | medium.txt | 407.0ms |
+| go-gpt5.1 | medium.txt | 764.1ms |
+| go-gpt5.1-with-hint | medium.txt | 787.3ms |
+| go-haiku-4.5-with-hint | medium.txt | 971.3ms |
+| go-qwen | medium.txt | 1.005s |
+| go-opencode-grok-code-fast | medium.txt | 1.013s |
+| go-opencode-grok-code-fast-with-hint | medium.txt | 1.025s |
+| go-qwen-with-hint | medium.txt | 1.064s |
 
 ---
 *Based on the original [1BRC by Gunnar Morling](https://github.com/gunnarmorling/1brc).*

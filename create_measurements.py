@@ -28,12 +28,13 @@ def check_args(file_args):
     Sanity checks out input and prints out usage if input is not a positive integer
     """
     try:
-        if len(file_args) != 2 or int(file_args[1]) <= 0:
+        if len(file_args) < 2 or len(file_args) > 3 or int(file_args[1]) <= 0:
             raise Exception()
     except:
-        print("Usage:  create_measurements.sh <positive integer number of records to create>")
+        print("Usage:  create_measurements.sh <positive integer number of records to create> [output file path]")
         print("        You can use underscore notation for large number of records.")
         print("        For example:  1_000_000_000 for one billion")
+        print("        If output file path is not provided, defaults to ./data/measurements.txt")
         exit()
 
 
@@ -98,7 +99,7 @@ def estimate_file_size(weather_station_names, num_rows_to_create):
     return f"Estimated max file size is:  {human_file_size}."
 
 
-def build_test_data(weather_station_names, num_rows_to_create):
+def build_test_data(weather_station_names, num_rows_to_create, output_path):
     """
     Generates and writes to file the requested length of test data
     """
@@ -111,7 +112,7 @@ def build_test_data(weather_station_names, num_rows_to_create):
     print('Building test data...')
 
     try:
-        with open("./data/measurements.txt", 'w') as file:
+        with open(output_path, 'w') as file:
             progress = 0
             for chunk in range(chunks):
                 
@@ -133,10 +134,10 @@ def build_test_data(weather_station_names, num_rows_to_create):
     
     end_time = time.time()
     elapsed_time = end_time - start_time
-    file_size = os.path.getsize("../../../data/measurements.txt")
+    file_size = os.path.getsize(output_path)
     human_file_size = convert_bytes(file_size)
  
-    print("Test data successfully written to 1brc/data/measurements.txt")
+    print(f"Test data successfully written to {output_path}")
     print(f"Actual file size:  {human_file_size}")
     print(f"Elapsed time: {format_elapsed_time(elapsed_time)}")
 
@@ -147,10 +148,11 @@ def main():
     """
     check_args(sys.argv)
     num_rows_to_create = int(sys.argv[1])
+    output_path = sys.argv[2] if len(sys.argv) == 3 else "./data/measurements.txt"
     weather_station_names = []
     weather_station_names = build_weather_station_name_list()
     print(estimate_file_size(weather_station_names, num_rows_to_create))
-    build_test_data(weather_station_names, num_rows_to_create)
+    build_test_data(weather_station_names, num_rows_to_create, output_path)
     print("Test data build complete.")
 
 
