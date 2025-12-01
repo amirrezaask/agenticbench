@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 	"sort"
@@ -135,29 +136,25 @@ func processChunk(data []byte, start, end int, tbl *table) {
 	for i < end {
 		lineStart := i
 
-		// find ';'
-		semi := -1
-		for i < end {
-			if data[i] == ';' {
-				semi = i
-				i++
-				break
-			}
-			i++
+		relSemi := bytes.IndexByte(data[i:end], ';')
+		if relSemi < 0 {
+			break
 		}
-		if semi == -1 {
-			// no complete line
+		semi := i + relSemi
+
+		valStart := semi + 1
+		if valStart >= end {
 			break
 		}
 
-		// find end of line '\n'
-		valStart := i
-		for i < end && data[i] != '\n' {
-			i++
-		}
-		valEnd := i
-		if i < end && data[i] == '\n' {
-			i++
+		relNL := bytes.IndexByte(data[valStart:end], '\n')
+		var valEnd int
+		if relNL < 0 {
+			valEnd = end
+			i = end
+		} else {
+			valEnd = valStart + relNL
+			i = valEnd + 1
 		}
 
 		nameBytes := data[lineStart:semi]
