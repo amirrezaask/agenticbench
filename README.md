@@ -15,16 +15,6 @@ We test two variations for each model:
 1.  **Raw Prompt**: The model is given the standard challenge description.
 2.  **With Hints**: The model is nudged to use advanced techniques (mmap, SIMD, concurrency, etc.).
 
-| Directory                | Model        | Hinted? | Description                        |
-|--------------------------|--------------|---------|------------------------------------|
-| `go-haiku-4.5`          | Haiku 4.5   | ❌      | Standard implementation.           |
-| `go-gemini3`             | Gemini 3     | ❌      | Standard implementation.           |
-| `go-gemini3-with-hint`   | Gemini 3     | ✅      | Prompted to use OS/Kernel features.|
-| `go-opus4.5`             | Opus 4.5     | ❌      | Standard implementation.           |
-| `go-opus4.5-with-hint`   | Opus 4.5     | ✅      | Prompted to use OS/Kernel features.|
-| `go-qwen`                | Qwen         | ❌      | Standard implementation.           |
-| `go-qwen-with-hint`      | Qwen         | ✅      | Prompted to use OS/Kernel features.|
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -68,16 +58,16 @@ python3 run_all.py data/measurements.txt --runs 3
 
 | Implementation | Input | Time (avg) |
 |---|---|---|
-| go-opus4.5-with-hint | medium.txt | 36.5ms |
-| go-opus4.5 | medium.txt | 39.5ms |
-| go-haiku-4.5 | medium.txt | 40.5ms |
-| go-gemini3-with-hint | medium.txt | 41.3ms |
-| go-gemini3 | medium.txt | 59.0ms |
-| go-gpt5.1 | medium.txt | 87.1ms |
-| go-haiku-4.5-with-hint | medium.txt | 124.3ms |
-| go-qwen-with-hint | medium.txt | 132.6ms |
-| go-qwen | medium.txt | 137.9ms |
-| go-gpt5.1-with-hint | medium.txt | 219.8ms |
+| go-opus4.5-with-hint | medium.txt | 25.4ms |
+| go-opus4.5 | medium.txt | 25.9ms |
+| go-gemini3-with-hint | medium.txt | 46.6ms |
+| go-haiku-4.5 | medium.txt | 55.2ms |
+| go-gemini3 | medium.txt | 78.1ms |
+| go-haiku-4.5-with-hint | medium.txt | 131.9ms |
+| go-gpt5.1 | medium.txt | 134.7ms |
+| go-qwen-with-hint | medium.txt | 153.7ms |
+| go-qwen | medium.txt | 161.6ms |
+| go-gpt5.1-with-hint | medium.txt | 190.2ms |
 
 ---
 *Based on the original [1BRC by Gunnar Morling](https://github.com/gunnarmorling/1brc).*
