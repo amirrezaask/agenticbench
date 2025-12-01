@@ -15,12 +15,14 @@ We test two variations for each model:
 1.  **Raw Prompt**: The model is given the standard challenge description.
 2.  **With Hints**: The model is nudged to use advanced techniques (mmap, SIMD, concurrency, etc.).
 
-| Directory | Model | Hinted? | Description |
-|-----------|-------|---------|-------------|
-| `go-gemini3` | Gemini 3 | ❌ | Standard implementation. |
-| `go-gemini3-with-hint` | Gemini 3 | ✅ | Prompted to use OS/Kernel features. |
-| `go-opus4.5` | Opus 4.5 | ❌ | Standard implementation. |
-| `go-opus4.5-with-hint` | Opus 4.5 | ✅ | Prompted to use OS/Kernel features. |
+| Directory                | Model        | Hinted? | Description                        |
+|--------------------------|--------------|---------|------------------------------------|
+| `go-gemini3`             | Gemini 3     | ❌      | Standard implementation.           |
+| `go-gemini3-with-hint`   | Gemini 3     | ✅      | Prompted to use OS/Kernel features.|
+| `go-opus4.5`             | Opus 4.5     | ❌      | Standard implementation.           |
+| `go-opus4.5-with-hint`   | Opus 4.5     | ✅      | Prompted to use OS/Kernel features.|
+| `go-qwen`                | Qwen         | ❌      | Standard implementation.           |
+| `go-qwen-with-hint`      | Qwen         | ✅      | Prompted to use OS/Kernel features.|
 
 ## 🚀 Getting Started
 
